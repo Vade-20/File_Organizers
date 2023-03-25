@@ -23,7 +23,10 @@ def move_file():
     all_files = os.listdir(os.getcwd())
     for i in all_files:
         if i != 'Organized_folder':
-            shutil.copy(i,f'Organized_folder\\{os.path.splitext(i)[1][1:]}')
+            try:
+                shutil.copy(i,f'Organized_folder\\{os.path.splitext(i)[1][1:]}')
+            except:
+                continue
 
 
  

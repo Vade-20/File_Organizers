@@ -12,11 +12,15 @@ def make_dir():
     sum_file = 0
     biggest_file = 0
     for i in all_files:
-        sum_file += round((os.path.getsize(i))/(1000000),2)
+        sum_file += (os.path.getsize(i))/(1000000)
         if (os.path.getsize(i))/(1000000) > biggest_file:
             biggest_file = (os.path.getsize(i))/(1000000)
     biggest_file1 = biggest_file
-    avg = round(sum_file/len(all_files),2)
+    if round(sum_file/len(all_files),2)!=0.0:
+        avg = round(sum_file/len(all_files),2)
+    else:
+        avg = sum_file/len(all_files)
+
     os.makedirs(f'Organized_folder\\{biggest_file}MB-{(biggest_file-avg)/2}MB')
     os.makedirs(f'Organized_folder\\{(biggest_file-avg)/2}MB-{avg}MB')
     os.makedirs(f'Organized_folder\\{avg}MB-{(avg)/2}MB')
@@ -27,14 +31,17 @@ def make_dir():
     
 def move_file(biggest_file,avg,all_files):
     for i in all_files:
-        size = round((os.path.getsize(i))/(1000000),2)
-        if 0<size<avg/2:
-            shutil.copy(i,f'Organized_folder\\{avg/2}MB-{0}MB')
-        elif avg/2<size<avg:
-            shutil.copy(i,f'Organized_folder\\{avg}MB-{(avg)/2}MB')
-        elif avg<size<(biggest_file-avg)/2:
-            shutil.copy(i,f'Organized_folder\\{(biggest_file-avg)/2}MB-{avg}MB')
-        elif (biggest_file-avg)/2<size<biggest_file:
-            shutil.copy(i,f'Organized_folder\\{biggest_file}MB-{(biggest_file-avg)/2}MB')
-
+        size = (os.path.getsize(i))/(1000000)
+        try:
+            if 0<size<avg/2:
+                shutil.copy(i,f'Organized_folder\\{avg/2}MB-{0}MB')
+            elif avg/2<size<avg:
+                shutil.copy(i,f'Organized_folder\\{avg}MB-{(avg)/2}MB')
+            elif avg<size<(biggest_file-avg)/2:
+                shutil.copy(i,f'Organized_folder\\{(biggest_file-avg)/2}MB-{avg}MB')
+            elif (biggest_file-avg)/2<size<biggest_file:
+                shutil.copy(i,f'Organized_folder\\{biggest_file}MB-{(biggest_file-avg)/2}MB')
+        except:
+            continue
 make_dir()
+
