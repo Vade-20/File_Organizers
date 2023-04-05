@@ -12,11 +12,9 @@ copy_files_to_directory.py moves files from the current directory to the "All_th
 moves files present in them to 'All_the_files'.
 
 # Usage
-Download the scripts to a directory on your computer.
+1. Download or clone the scripts to a directory on your computer.
 
-Move the python scirpts to the directory where you want it to perfom the task.
-
-Open a terminal or command prompt and navigate to the directory where the scripts are located.
+2. Open a terminal or command prompt and navigate to the directory where the scripts are located.
 
 # Requirements
 Python 3.x
